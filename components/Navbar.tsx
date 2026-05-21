@@ -33,7 +33,7 @@ export default function Navbar() {
     >
       {/* Logo */}
       <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-        <div
+        {/* <div
           style={{
             width: 32,
             height: 32,
@@ -45,12 +45,12 @@ export default function Navbar() {
           }}
         >
           <span style={{ color: "#fff", fontWeight: 700, fontSize: 14 }}>N</span>
-        </div>
+        </div> */}
         <span
           className="playfair"
-          style={{ fontWeight: 700, fontSize: "1.1rem", letterSpacing: "-0.02em" }}
+          style={{ fontWeight: 700, fontSize: "1.1rem", letterSpacing: "-0.02em"  }}
         >
-          Nancy
+          Eka Mahardika
         </span>
       </div>
 

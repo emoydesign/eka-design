@@ -2,31 +2,31 @@
 
 const experiences = [
   {
-    year: "2023 – Now",
-    role: "Senior Graphic Designer",
-    company: "Freelance",
-    desc: "Social media kits, brand identity, and custom illustration for clients across fashion, food, and lifestyle brands.",
+    year: "2025 – 2025",
+    role: "Creative Designer Intern",
+    company: "Djoin  -  PT. Solusi Anak Sakti",
+    desc: "Membuat aset visual perusahaan untuk membantu kebutuhan pemasaran. Berkoordinasi secara aktif dengan tim komersial untuk memastikan kebutuhan materi pemasaran terpenuhi.",
   },
   {
-    year: "2022 – 2023",
-    role: "Visual Designer",
-    company: "Studio Kreatif ID",
-    desc: "Created branded content and marketing materials for 15+ brands. Led T-shirt design campaigns reaching 10k+ units sold.",
+    year: "2022 – 2025",
+    role: "Illustrator & Graphic Designer",
+    company: "Fiverr  -  Freelancer",
+    desc: " Menangani administrasi layanan klien internasional secara mandiri, mulai dari penerimaan pesanan, negosiasi kebutuhan, penagihan, hingga penyerahan hasil akhir. ",
   },
   {
     year: "2021 – 2022",
-    role: "Junior Designer",
-    company: "Bali Digital Co.",
-    desc: "Designed social media assets, infographics, and digital illustrations for local and international clients.",
+    role: "Customer Service Representative (CSR)",
+    company: "Circle K",
+    desc: "Mengoperasikan sistem Point of Sale (POS) untuk memproses transaksi pelanggan secara cepat, tepat, dan efisien.",
   },
 ];
 
 const skills = [
-  { name: "Adobe Illustrator", pct: 95 },
-  { name: "Photoshop", pct: 90 },
-  { name: "Figma", pct: 85 },
-  { name: "Adobe InDesign", pct: 80 },
-  { name: "Procreate", pct: 88 },
+  { name: "Microsoft Office", pct: 95 },
+  { name: "Google Workspace", pct: 90 },
+  { name: "Adobe Photoshop", pct: 90 },
+  { name: "Canva", pct: 90 },
+  { name: "Web Development", pct: 90 },
 ];
 
 export default function About() {
@@ -87,9 +87,7 @@ export default function About() {
               fontSize: "0.95rem",
             }}
           >
-            I&apos;m a graphic designer based in Bali with 3+ years of experience transforming
-            ideas into striking visuals. My work spans social media design, hand-crafted
-            illustrations, and apparel graphics — always with intentional storytelling at the core.
+            Beberapa Skill yang saya miliki:
           </p>
 
           {/* Skills */}

@@ -1,39 +1,10 @@
 "use client";
-import { useEffect, useRef } from "react";
+
+import Image from "next/image";
+import { useState } from "react";
 
 export default function Hero() {
-  const tagRef = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const tags = ["Social Media", "Illustration", "T-Shirt Design"];
-    let i = 0;
-    let charIdx = 0;
-    let deleting = false;
-    let timeout: ReturnType<typeof setTimeout>;
-
-    function type() {
-      const current = tags[i];
-      if (!deleting) {
-        charIdx++;
-        if (tagRef.current) tagRef.current.textContent = current.slice(0, charIdx);
-        if (charIdx === current.length) {
-          deleting = true;
-          timeout = setTimeout(type, 1500);
-          return;
-        }
-      } else {
-        charIdx--;
-        if (tagRef.current) tagRef.current.textContent = current.slice(0, charIdx);
-        if (charIdx === 0) {
-          deleting = false;
-          i = (i + 1) % tags.length;
-        }
-      }
-      timeout = setTimeout(type, deleting ? 60 : 100);
-    }
-    type();
-    return () => clearTimeout(timeout);
-  }, []);
+  const [hoveredBtn, setHoveredBtn] = useState("");
 
   return (
     <section
@@ -42,231 +13,140 @@ export default function Hero() {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        padding: "6rem 2rem 4rem",
+        justifyContent: "space-between",
+        gap: "4rem",
+        padding: "6rem 2rem",
         maxWidth: 1100,
         margin: "0 auto",
-        position: "relative",
+        flexWrap: "wrap",
       }}
     >
-      {/* Decorative blobs */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          top: "15%",
-          right: "5%",
-          width: 320,
-          height: 320,
-          background: "radial-gradient(circle, rgba(232,83,58,0.12) 0%, transparent 70%)",
-          borderRadius: "50%",
-          pointerEvents: "none",
-        }}
-      />
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          bottom: "10%",
-          left: "2%",
-          width: 200,
-          height: 200,
-          background: "radial-gradient(circle, rgba(13,148,136,0.1) 0%, transparent 70%)",
-          borderRadius: "50%",
-          pointerEvents: "none",
-        }}
-      />
-
-      <div style={{ maxWidth: 640 }}>
-        {/* Eyebrow */}
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.5rem",
-            background: "rgba(232,83,58,0.1)",
-            padding: "0.35rem 1rem",
-            borderRadius: "2rem",
-            marginBottom: "1.5rem",
-          }}
-        >
-          <span
-            style={{
-              width: 8,
-              height: 8,
-              background: "var(--accent)",
-              borderRadius: "50%",
-              display: "inline-block",
-            }}
-          />
-          <span style={{ color: "var(--accent)", fontSize: "0.85rem", fontWeight: 600 }}>
-            Available for freelance
-          </span>
-        </div>
-
-        {/* Greeting */}
-        <p
-          style={{
-            color: "var(--accent)",
-            fontWeight: 600,
-            fontSize: "1.1rem",
-            marginBottom: "0.5rem",
-            letterSpacing: "0.02em",
-          }}
-        >
-          Hello, I&apos;m Nancy
-        </p>
-
-        {/* Headline */}
+      {/* Left Content */}
+      <div style={{ flex: 1, minWidth: 300 }}>
         <h1
           className="playfair"
           style={{
-            fontSize: "clamp(2.8rem, 6vw, 4.5rem)",
-            fontWeight: 900,
+            fontSize: "clamp(3rem, 7vw, 5rem)",
             lineHeight: 1.1,
-            letterSpacing: "-0.03em",
-            marginBottom: "1.25rem",
+            fontWeight: 800,
+            marginBottom: "1.5rem",
           }}
         >
-          Professional
-          <br />
-          <span style={{ color: "var(--accent)" }}>Graphic</span> Designer
+          Hello! I&apos;m <span style={{ color: "var(--accent)" }}>Eka</span>
         </h1>
 
-        {/* Typewriter */}
-        <p style={{ fontSize: "1.15rem", color: "var(--muted)", marginBottom: "1.5rem" }}>
-          Specializing in{" "}
-          <span
-            ref={tagRef}
-            style={{
-              color: "var(--fg)",
-              fontWeight: 600,
-              borderRight: "2px solid var(--accent)",
-              paddingRight: 2,
-            }}
-          />
-        </p>
-
-        {/* Bio */}
         <p
           style={{
             color: "var(--muted)",
-            lineHeight: 1.75,
-            maxWidth: 480,
-            marginBottom: "2.5rem",
-            fontSize: "0.95rem",
+            lineHeight: 1.8,
+            maxWidth: 550,
+            fontSize: "1rem",
+            marginBottom: "2rem",
           }}
         >
-          I craft compelling visual identities and designs that speak louder than words —
-          from vibrant social media assets to hand-drawn illustrations and wearable art.
+          Saya Fresh Graduate lulusan Sistem Informasi yang teliti, terorganisir, dan memiliki
+          pemahaman kuat dalam pengelolaan data serta administrasi sistem.
+          Berpengalaman dalam mengelola komunikasi profesional dengan klien
+          internasional serta berkolaborasi lintas divisi.
         </p>
 
-        {/* CTAs */}
-        <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-          <a
-            href="#portfolio"
-            style={{
-              background: "var(--accent)",
-              color: "#fff",
-              padding: "0.85rem 2rem",
-              borderRadius: "2rem",
-              textDecoration: "none",
-              fontWeight: 600,
-              fontSize: "0.95rem",
-              transition: "transform 0.2s, opacity 0.2s",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.5rem",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-              (e.currentTarget as HTMLElement).style.opacity = "0.9";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-              (e.currentTarget as HTMLElement).style.opacity = "1";
-            }}
-          >
-            View Portfolio ↓
-          </a>
-          <a
-            href="#contact"
-            style={{
-              background: "transparent",
-              color: "var(--fg)",
-              padding: "0.85rem 2rem",
-              borderRadius: "2rem",
-              textDecoration: "none",
-              fontWeight: 600,
-              fontSize: "0.95rem",
-              border: "1.5px solid var(--border)",
-              transition: "border-color 0.2s, transform 0.2s",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)";
-              (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
-              (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-            }}
-          >
-            Hire Me
-          </a>
-        </div>
-
-        {/* Stats */}
         <div
           style={{
             display: "flex",
-            gap: "2.5rem",
-            marginTop: "3rem",
-            paddingTop: "2rem",
-            borderTop: "1px solid var(--border)",
+            gap: "1rem",
             flexWrap: "wrap",
           }}
         >
-          {[
-            { num: "3+", label: "Years Experience" },
-            { num: "50+", label: "Projects Done" },
-            { num: "30+", label: "Happy Clients" },
-          ].map((s) => (
-            <div key={s.label}>
-              <p
-                className="playfair"
-                style={{ fontSize: "2rem", fontWeight: 700, color: "var(--accent)" }}
-              >
-                {s.num}
-              </p>
-              <p style={{ fontSize: "0.8rem", color: "var(--muted)", fontWeight: 500 }}>
-                {s.label}
-              </p>
-            </div>
-          ))}
+          {/* BUTTON 1 */}
+          <a
+            href="#portfolio"
+            onMouseEnter={() => setHoveredBtn("portfolio")}
+            onMouseLeave={() => setHoveredBtn("")}
+            style={{
+              background:
+                hoveredBtn === "portfolio" ? "#ff8c42" : "var(--accent)",
+              color: "#fff",
+              padding: "0.95rem 2rem",
+              borderRadius: "999px",
+              textDecoration: "none",
+              fontWeight: 600,
+              transform:
+                hoveredBtn === "portfolio"
+                  ? "translateY(-4px)"
+                  : "translateY(0px)",
+              boxShadow:
+                hoveredBtn === "portfolio"
+                  ? "0 12px 30px rgba(255,140,66,0.35)"
+                  : "none",
+              transition: "all 0.3s ease",
+            }}
+          >
+            View Portfolio
+          </a>
+
+          {/* BUTTON 2 */}
+          <a
+            href="#contact"
+            onMouseEnter={() => setHoveredBtn("contact")}
+            onMouseLeave={() => setHoveredBtn("")}
+            style={{
+              border:
+                hoveredBtn === "contact"
+                  ? "1px solid var(--accent)"
+                  : "1px solid rgba(255,255,255,0.18)",
+              color:
+                hoveredBtn === "contact"
+                  ? "var(--accent)"
+                  : "var(--foreground)",
+              background:
+                hoveredBtn === "contact"
+                  ? "rgba(255,255,255,0.03)"
+                  : "transparent",
+              padding: "0.95rem 2rem",
+              borderRadius: "999px",
+              textDecoration: "none",
+              fontWeight: 600,
+              transform:
+                hoveredBtn === "contact"
+                  ? "translateY(-4px)"
+                  : "translateY(0px)",
+              transition: "all 0.3s ease",
+            }}
+          >
+            Contact Me
+          </a>
         </div>
       </div>
 
-      {/* Right decoration */}
+      {/* Right Image */}
       <div
         style={{
-          position: "absolute",
-          right: "2rem",
-          top: "50%",
-          transform: "translateY(-50%)",
-          display: "none",
+          flex: 1,
+          display: "flex",
+          justifyContent: "center",
+          minWidth: 280,
         }}
-        className="lg:block"
       >
         <div
           style={{
-            width: 340,
-            height: 400,
-            background: "var(--border)",
-            borderRadius: "60% 40% 40% 60% / 60% 60% 40% 40%",
             position: "relative",
+            width: 350,
+            height: 420,
+            borderRadius: 30,
             overflow: "hidden",
-            opacity: 0.4,
+            border: "1px solid rgba(255,255,255,0.12)",
           }}
-        />
+        >
+          <Image
+            src="/images/nobg1.png"
+            alt="Eka"
+            fill
+            style={{
+              objectFit: "cover",
+            }}
+            priority
+          />
+        </div>
       </div>
     </section>
   );
