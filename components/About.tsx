@@ -33,7 +33,7 @@ const softwareList = [
   { name: "Canva", src: "/images/software/canva.png" },
   { name: "ChatGPT", src: "/images/software/Chat GPT.png" },
   { name: "Gemini", src: "/images/software/Gemini.png" },
-  { name: "Claude", src: "/images/software/claude.png" },
+  { name: "Claude", src: "/images/software/Claude.png" },
 ];
 
 const skillsList = [
