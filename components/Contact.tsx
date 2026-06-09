@@ -1,35 +1,35 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, Camera, Link, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, Camera, Link } from "lucide-react";
 
 export default function Contact() {
-  const [hovered, setHovered] = useState(null);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   const contacts = [
     {
       title: "Email",
       value: "wayaneka2003@gmail.com",
       href: "mailto:wayaneka2004@gmail.com",
-      icon: <Mail size={20} />,
+      icon: <Mail size={16} />,
     },
     {
       title: "WhatsApp",
       value: "+62 8124 6457 249",
       href: "https://wa.me/6281246457249",
-      icon: <Phone size={20} />,
+      icon: <Phone size={16} />,
     },
     {
       title: "Instagram",
       value: "@ekamahardiika",
       href: "https://instagram.com/ekamahardiika",
-      icon: <Camera size={20} />,
+      icon: <Camera size={16} />,
     },
     {
       title: "LinkedIn",
       value: "linkedin.com/in/ekamahardika",
       href: "https://www.linkedin.com/in/i-wayan-eka-mahardika-a1385835a/",
-      icon: <Link size={20} />,
+      icon: <Link size={16} />,
     },
   ];
 
@@ -38,10 +38,37 @@ export default function Contact() {
       id="contact"
       style={{
         padding: "7rem 2rem",
-        maxWidth: 1200,
+        maxWidth: 1100,
         margin: "0 auto",
       }}
     >
+      <style dangerouslySetInnerHTML={{ __html: `
+        .contact-card {
+          transition: all 0.3s ease !important;
+        }
+        .contact-card:hover {
+          background-color: var(--primary) !important;
+          border-color: var(--primary) !important;
+          transform: translateX(8px);
+        }
+        .contact-card:hover .contact-label {
+          color: rgba(255,255,255,0.7) !important;
+        }
+        .contact-card:hover .contact-value {
+          color: #fff !important;
+        }
+        .contact-card:hover .contact-dot {
+          background-color: #fff !important;
+        }
+        .contact-card:hover .contact-icon {
+          color: #fff !important;
+        }
+        .contact-card:hover .contact-arrow {
+          color: #fff !important;
+          transform: rotate(-45deg);
+        }
+      ` }} />
+
       <div
         style={{
           display: "grid",
@@ -54,9 +81,9 @@ export default function Contact() {
         <div>
           <p
             style={{
-              color: "var(--muted)",
+              color: "var(--primary)",
               fontSize: "0.8rem",
-              fontWeight: 600,
+              fontWeight: 700,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
               marginBottom: "1rem",
@@ -66,12 +93,12 @@ export default function Contact() {
           </p>
 
           <h2
-            className="playfair"
             style={{
               fontSize: "clamp(2.8rem, 6vw, 5rem)",
+              fontWeight: 800,
               lineHeight: 1,
               marginBottom: "1.5rem",
-              color: "var(--foreground)",
+              color: "var(--fg)",
             }}
           >
             Mari
@@ -87,122 +114,97 @@ export default function Contact() {
               fontSize: "1rem",
             }}
           >
-            Terbuka untuk kolaborasi, dan
-            berbagai proyek digital lainnya.
+            Terbuka untuk kolaborasi, dan berbagai proyek digital lainnya.
           </p>
         </div>
 
-        {/* RIGHT */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
-          }}
-        >
+        {/* RIGHT — pill cards seperti sertifikasi */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
           {contacts.map((item, index) => {
-            const isHovered = hovered === index;
-
             return (
               <a
                 key={item.title}
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                onMouseEnter={() => setHovered(index)}
-                onMouseLeave={() => setHovered(null)}
+                className="contact-card"
                 style={{
-                  textDecoration: "none",
-                  border: isHovered
-                    ? "1px solid var(--accent)"
-                    : "1px solid #d4d4d4",
-                  borderRadius: 28,
-                  padding: "1.4rem 1.6rem",
-                  background: isHovered
-                    ? "rgba(255,255,255,0.04)"
-                    : "rgba(255,255,255,0.02)",
-                  transform: isHovered ? "translateX(12px)" : "translateX(0px)",
-                  transition: "all 0.35s ease",
                   display: "flex",
-                  justifyContent: "space-between",
                   alignItems: "center",
-                  backdropFilter: "blur(12px)",
+                  justifyContent: "space-between",
+                  padding: "0.75rem 1.5rem",
+                  borderRadius: "50px",
+                  border: "1px solid var(--border)",
+                  backgroundColor: "#fff",
+                  textDecoration: "none",
                 }}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "1rem",
-                  }}
-                >
-                  {/* ICON */}
-                  <div
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                  {/* Dot */}
+                  {/* <span
+                    className="contact-dot"
                     style={{
-                      width: 52,
-                      height: 52,
-                      borderRadius: 18,
-                      border: isHovered
-                        ? "1px solid var(--accent)"
-                        : "1px solid rgba(255,255,255,0.08)",
+                      width: 6,
+                      height: 6,
+                      borderRadius: "50%",
+                      backgroundColor: "var(--primary)",
+                      flexShrink: 0,
+                      transition: "background-color 0.3s ease",
+                    }}
+                  /> */}
+                  {/* Icon */}
+                  <span
+                    className="contact-icon"
+                    style={{
+                      color: "var(--primary)",
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "center",
-                      color: isHovered ? "var(--accent)" : "var(--foreground)",
-                      transition: "0.35s ease",
-                      background: isHovered
-                        ? "rgba(255,255,255,0.04)"
-                        : "transparent",
+                      transition: "color 0.3s ease",
                     }}
                   >
                     {item.icon}
-                  </div>
-
-                  {/* TEXT */}
-                  <div>
-                    <p
+                  </span>
+                  {/* Label + Value */}
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span
+                      className="contact-label"
                       style={{
-                        color: isHovered ? "var(--accent)" : "var(--muted)",
-                        fontSize: "0.85rem",
-                        marginBottom: "0.4rem",
-                        transition: "0.3s ease",
+                        fontSize: "0.8rem",
+                        color: "var(--primary)",
+                        fontWeight: 500,
+                        transition: "color 0.3s ease",
                       }}
                     >
                       {item.title}
-                    </p>
-
-                    <h3
+                    </span>
+                    <span style={{ color: "var(--border)", fontSize: "0.8rem" }}>·</span>
+                    <span
+                      className="contact-value"
                       style={{
-                        color: "var(--foreground)",
-                        fontSize: "1.05rem",
-                        fontWeight: 500,
-                        margin: 0,
+                        fontSize: "0.9rem",
+                        color: "var(--fg)",
+                        fontWeight: 600,
+                        transition: "color 0.3s ease",
                       }}
                     >
                       {item.value}
-                    </h3>
+                    </span>
                   </div>
                 </div>
 
-                {/* ARROW */}
-                <div
+                {/* Arrow */}
+                <span
+                  className="contact-arrow"
                   style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: "50%",
-                    border: isHovered
-                      ? "1px solid var(--accent)"
-                      : "1px solid rgba(255,255,255,0.08)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: isHovered ? "var(--accent)" : "var(--foreground)",
-                    transform: isHovered ? "rotate(45deg)" : "rotate(0deg)",
-                    transition: "all 0.35s ease",
+                    color: "var(--primary)",
+                    fontSize: "1.2rem",
+                    fontWeight: "bold",
+                    display: "inline-block",
+                    transition: "transform 0.3s ease, color 0.3s ease",
                   }}
                 >
-                  <ArrowUpRight size={18} />
-                </div>
+                  →
+                </span>
               </a>
             );
           })}

@@ -19,20 +19,21 @@ export default function Hero() {
         maxWidth: 1100,
         margin: "0 auto",
         flexWrap: "wrap",
+        marginTop: "40px"
       }}
     >
       {/* Left Content */}
       <div style={{ flex: 1, minWidth: 300 }}>
         <h1
-          className="playfair"
           style={{
-            fontSize: "clamp(3rem, 7vw, 5rem)",
+            fontSize: "clamp(2.7rem, 7vw, 4rem)",
             lineHeight: 1.1,
             fontWeight: 800,
             marginBottom: "1.5rem",
+            fontFamily: "'Inter', sans-serif",
           }}
         >
-          Hello! I&apos;m <span style={{ color: "var(--accent)" }}>Eka</span>
+          Halo! Saya <br /><span style={{ color: "var(--primary)" }}>Eka Mahardika</span>
         </h1>
 
         <p
@@ -44,10 +45,11 @@ export default function Hero() {
             marginBottom: "2rem",
           }}
         >
-          Saya Fresh Graduate lulusan Sistem Informasi yang teliti, terorganisir, dan memiliki
-          pemahaman kuat dalam pengelolaan data serta administrasi sistem.
-          Berpengalaman dalam mengelola komunikasi profesional dengan klien
-          internasional serta berkolaborasi lintas divisi.
+          Saya Fresh Graduate lulusan Sistem Informasi yang teliti,
+          terorganisir, dan memiliki pemahaman kuat dalam pengelolaan data serta
+          administrasi sistem. Berpengalaman dalam mengelola komunikasi
+          profesional dengan klien internasional serta berkolaborasi lintas
+          divisi.
         </p>
 
         <div
@@ -64,7 +66,9 @@ export default function Hero() {
             onMouseLeave={() => setHoveredBtn("")}
             style={{
               background:
-                hoveredBtn === "portfolio" ? "#ff8c42" : "var(--accent)",
+                hoveredBtn === "portfolio"
+                  ? "var(--secondary)"
+                  : "var(--primary)",
               color: "#fff",
               padding: "0.95rem 2rem",
               borderRadius: "999px",
@@ -76,12 +80,12 @@ export default function Hero() {
                   : "translateY(0px)",
               boxShadow:
                 hoveredBtn === "portfolio"
-                  ? "0 12px 30px rgba(255,140,66,0.35)"
+                  ? "0 12px 30px rgba(0,57,195,0.25)"
                   : "none",
               transition: "all 0.3s ease",
             }}
           >
-            View Portfolio
+            Lihat Portfolio
           </a>
 
           {/* BUTTON 2 */}
@@ -92,15 +96,12 @@ export default function Hero() {
             style={{
               border:
                 hoveredBtn === "contact"
-                  ? "1px solid var(--accent)"
-                  : "1px solid rgba(255,255,255,0.18)",
-              color:
-                hoveredBtn === "contact"
-                  ? "var(--accent)"
-                  : "var(--foreground)",
+                  ? "1px solid var(--secondary)"
+                  : "1px solid var(--border)",
+              color: hoveredBtn === "contact" ? "var(--secondary)" : "var(--fg)",
               background:
                 hoveredBtn === "contact"
-                  ? "rgba(255,255,255,0.03)"
+                  ? "rgba(62, 146, 204,0.08)"
                   : "transparent",
               padding: "0.95rem 2rem",
               borderRadius: "999px",
@@ -113,7 +114,7 @@ export default function Hero() {
               transition: "all 0.3s ease",
             }}
           >
-            Contact Me
+            Kontak Saya
           </a>
         </div>
       </div>
@@ -134,17 +135,17 @@ export default function Hero() {
             height: 420,
             borderRadius: 30,
             overflow: "hidden",
-            border: "1px solid rgba(255,255,255,0.12)",
+            boxShadow: "0 20px 50px rgba(0,57,195,0.15)",
           }}
         >
           <Image
             src="/images/nobg1.png"
             alt="Eka"
             fill
+            priority
             style={{
               objectFit: "cover",
             }}
-            priority
           />
         </div>
       </div>

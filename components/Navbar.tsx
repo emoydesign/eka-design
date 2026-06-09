@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image"; // Import komponen Image dari Next.js
 
 const links = ["Home", "About", "Portfolio", "Contact"];
 
@@ -9,8 +10,12 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
+
     window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
@@ -25,37 +30,47 @@ export default function Navbar() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        background: scrolled ? "rgba(250,249,247,0.95)" : "transparent",
+        background: scrolled ? "rgba(255,250,255,0.95)" : "transparent",
         backdropFilter: scrolled ? "blur(12px)" : "none",
         borderBottom: scrolled ? "1px solid var(--border)" : "none",
         transition: "all 0.3s ease",
       }}
     >
-      {/* Logo */}
-      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-        {/* <div
-          style={{
-            width: 32,
-            height: 32,
-            background: "var(--accent)",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <span style={{ color: "#fff", fontWeight: 700, fontSize: 14 }}>N</span>
-        </div> */}
+      {/* Logo dengan Gambar di Sebelahnya */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "0.75rem", // Jarak pas antara gambar dan teks
+        }}
+      >
+        <Image
+          src="/images/logo-icon2.png" // Sesuaikan nama file gambar kamu di folder public/images
+          alt="Logo"
+          width={32} // Atur ukuran lebar sesuai kebutuhan
+          height={32} // Atur ukuran tinggi sesuai kebutuhan
+          style={{ objectFit: "contain" }}
+        />
         <span
-          className="playfair"
-          style={{ fontWeight: 700, fontSize: "1.1rem", letterSpacing: "-0.02em"  }}
+          style={{
+            fontWeight: 700,
+            fontSize: "1.1rem",
+            letterSpacing: "-0.02em",
+            fontFamily: "'Inter', sans-serif",
+          }}
         >
           Eka Mahardika
         </span>
       </div>
 
       {/* Desktop Links */}
-      <div style={{ display: "flex", gap: "2rem" }} className="hidden md:flex">
+      <div
+        className="hidden md:flex"
+        style={{
+          display: "flex",
+          gap: "2rem",
+        }}
+      >
         {links.map((link) => (
           <a
             key={link}
@@ -67,41 +82,61 @@ export default function Navbar() {
               fontWeight: 500,
               transition: "color 0.2s",
             }}
-            onMouseEnter={(e) =>
-              ((e.target as HTMLElement).style.color = "var(--accent)")
-            }
-            onMouseLeave={(e) =>
-              ((e.target as HTMLElement).style.color = "var(--muted)")
-            }
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "var(--primary)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "var(--muted)";
+            }}
           >
             {link}
           </a>
         ))}
       </div>
 
-      {/* CTA Button */}
+      {/* CTA Button - Download CV dengan Icon */}
       <a
-        href="#contact"
+        href="/files/CV_I Wayan Eka Mahardika_ID.pdf" // Jalur file CV yang ditaruh di folder public
+        download="CV_Eka_Mahardika.pdf" // Nama file saat berhasil diunduh user
         style={{
-          background: "var(--accent)",
+          background: "var(--primary)",
           color: "#fff",
           padding: "0.5rem 1.25rem",
           borderRadius: "2rem",
           textDecoration: "none",
           fontSize: "0.875rem",
           fontWeight: 600,
+          display: "flex", // Membuat isi button menjadi flexbox
+          alignItems: "center", // Menyejajarkan teks dan ikon secara vertikal
+          gap: "0.5rem", // Memberikan jarak antara teks dan ikon
           transition: "opacity 0.2s, transform 0.2s",
         }}
         onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.opacity = "0.85";
-          (e.currentTarget as HTMLElement).style.transform = "scale(1.04)";
+          e.currentTarget.style.opacity = "0.85";
+          e.currentTarget.style.transform = "scale(1.04)";
         }}
         onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.opacity = "1";
-          (e.currentTarget as HTMLElement).style.transform = "scale(1)";
+          e.currentTarget.style.opacity = "1";
+          e.currentTarget.style.transform = "scale(1)";
         }}
       >
-        Let&apos;s talk
+        <span>Download CV</span>
+        {/* SVG Icon Download */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
       </a>
     </nav>
   );
