@@ -25,14 +25,14 @@ const experiences = [
 
 const softwareList = [
   { name: "Google Workspace", src: "/images/software/Google.png" },
-  { name: "Word", src: "/images/software/word.png" },
-  { name: "Excel", src: "/images/software/excel.png" },
+  { name: "Word", src: "/images/software/Word.png" },
+  { name: "Excel", src: "/images/software/Excel.png" },
   { name: "PowerPoint", src: "/images/software/Power.png" },
   { name: "Photoshop", src: "/images/software/PS.png" },
-  { name: "CapCut", src: "/images/software/capcut.png" },
+  { name: "CapCut", src: "/images/software/Capcut.png" },
   { name: "Canva", src: "/images/software/canva.png" },
   { name: "ChatGPT", src: "/images/software/Chat GPT.png" },
-  { name: "Gemini", src: "/images/software/gemini.png" },
+  { name: "Gemini", src: "/images/software/Gemini.png" },
   { name: "Claude", src: "/images/software/claude.png" },
 ];
 
