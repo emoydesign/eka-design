@@ -10,7 +10,7 @@ export default function Contact() {
     {
       title: "Email",
       value: "wayaneka2003@gmail.com",
-      href: "mailto:wayaneka2004@gmail.com",
+      href: "mailto:wayaneka2003@gmail.com",
       icon: <Mail size={16} />,
     },
     {
@@ -37,12 +37,16 @@ export default function Contact() {
     <section
       id="contact"
       style={{
-        padding: "7rem 2rem",
+        padding: "5rem 2rem", // Tetap menjaga padding samping 2rem konsisten
         maxWidth: 1100,
         margin: "0 auto",
+        width: "100%",
+        boxSizing: "border-box",
       }}
     >
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         .contact-card {
           transition: all 0.3s ease !important;
         }
@@ -51,14 +55,16 @@ export default function Contact() {
           border-color: var(--primary) !important;
           transform: translateX(8px);
         }
+        @media (max-width: 768px) {
+          .contact-card:hover {
+            transform: translateY(-4px);
+          }
+        }
         .contact-card:hover .contact-label {
           color: rgba(255,255,255,0.7) !important;
         }
         .contact-card:hover .contact-value {
           color: #fff !important;
-        }
-        .contact-card:hover .contact-dot {
-          background-color: #fff !important;
         }
         .contact-card:hover .contact-icon {
           color: #fff !important;
@@ -67,14 +73,17 @@ export default function Contact() {
           color: #fff !important;
           transform: rotate(-45deg);
         }
-      ` }} />
+      `,
+        }}
+      />
 
+      {/* Grid wrapper dengan flex-col di mobile agar tidak merusak padding samping */}
       <div
+        className="flex flex-col md:grid"
         style={{
-          display: "grid",
           gridTemplateColumns: "1fr 1.2fr",
-          gap: "4rem",
-          alignItems: "center",
+          gap: "2.5rem md:4rem",
+          width: "100%",
         }}
       >
         {/* LEFT */}
@@ -94,9 +103,9 @@ export default function Contact() {
 
           <h2
             style={{
-              fontSize: "clamp(2.8rem, 6vw, 5rem)",
+              fontSize: "clamp(2.3rem, 6vw, 4.5rem)",
               fontWeight: 800,
-              lineHeight: 1,
+              lineHeight: 1.1,
               marginBottom: "1.5rem",
               color: "var(--fg)",
             }}
@@ -112,14 +121,22 @@ export default function Contact() {
               lineHeight: 1.9,
               maxWidth: 420,
               fontSize: "1rem",
+              marginBottom: "1.5rem",
             }}
           >
             Terbuka untuk kolaborasi, dan berbagai proyek digital lainnya.
           </p>
         </div>
 
-        {/* RIGHT — pill cards seperti sertifikasi */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+        {/* RIGHT — pill cards */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.75rem",
+            width: "100%",
+          }}
+        >
           {contacts.map((item, index) => {
             return (
               <a
@@ -132,59 +149,68 @@ export default function Contact() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  padding: "0.75rem 1.5rem",
+                  padding: "0.85rem 1.5rem",
                   borderRadius: "50px",
                   border: "1px solid var(--border)",
                   backgroundColor: "#fff",
-                  textDecoration: "none",
+                  gap: "1rem",
+                  width: "100%",
+                  boxSizing: "border-box",
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                  {/* Dot */}
-                  {/* <span
-                    className="contact-dot"
-                    style={{
-                      width: 6,
-                      height: 6,
-                      borderRadius: "50%",
-                      backgroundColor: "var(--primary)",
-                      flexShrink: 0,
-                      transition: "background-color 0.3s ease",
-                    }}
-                  /> */}
-                  {/* Icon */}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.75rem",
+                    minWidth: 0,
+                  }}
+                >
                   <span
                     className="contact-icon"
                     style={{
                       color: "var(--primary)",
                       display: "flex",
                       alignItems: "center",
+                      flexShrink: 0,
                       transition: "color 0.3s ease",
                     }}
                   >
                     {item.icon}
                   </span>
-                  {/* Label + Value */}
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+
+                  <div
+                    className="flex flex-col sm:flex-row sm:items-center"
+                    style={{ gap: "0.15rem sm:0.5rem", minWidth: 0 }}
+                  >
                     <span
                       className="contact-label"
                       style={{
-                        fontSize: "0.8rem",
+                        fontSize: "0.75rem",
                         color: "var(--primary)",
                         fontWeight: 500,
+                        textTransform: "uppercase",
                         transition: "color 0.3s ease",
                       }}
                     >
                       {item.title}
                     </span>
-                    <span style={{ color: "var(--border)", fontSize: "0.8rem" }}>·</span>
+                    <span
+                      className="hidden sm:inline"
+                      style={{ color: "var(--border)", fontSize: "0.8rem" }}
+                    >
+                      ·
+                    </span>
                     <span
                       className="contact-value"
                       style={{
-                        fontSize: "0.9rem",
+                        fontSize: "clamp(0.8rem, 3.5vw, 0.9rem)",
                         color: "var(--fg)",
                         fontWeight: 600,
                         transition: "color 0.3s ease",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                       }}
                     >
                       {item.value}
@@ -192,7 +218,6 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Arrow */}
                 <span
                   className="contact-arrow"
                   style={{
@@ -200,6 +225,7 @@ export default function Contact() {
                     fontSize: "1.2rem",
                     fontWeight: "bold",
                     display: "inline-block",
+                    flexShrink: 0,
                     transition: "transform 0.3s ease, color 0.3s ease",
                   }}
                 >

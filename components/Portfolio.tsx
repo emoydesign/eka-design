@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const categories = ["All", "Data Entry", "Graphic Design"];
 
@@ -15,14 +15,20 @@ const projects = [
     description:
       "Sistem manajemen persediaan dan pengadaan barang yang mengintegrasikan data produk, supplier, dan transaksi. Dibangun menggunakan relasi antar tabel serta fungsi lookup dan perhitungan stok otomatis untuk menghasilkan laporan persediaan yang akurat.",
     buttonLabel: "Lihat Project",
-    buttonUrl:  "https://docs.google.com/spreadsheets/d/1pcRN76EmmYZJ4AANXNAlRdg5LWNzy_t5deJkVFWoVuI/edit?usp=sharing",
-    coverImage: "/images/dataentry/1/IN1.png",
+    buttonUrl:
+      "https://docs.google.com/spreadsheets/d/1pcRN76EmmYZJ4AANXNAlRdg5LWNzy_t5deJkVFWoVuI/edit?usp=sharing",
+    coverImage: "/images/dataentry/1/INCover.png",
     images: [
       "/images/dataentry/1/Laptop 1.png",
+      "/images/dataentry/1/IN1.png",
       "/images/dataentry/1/IN2.png",
       "/images/dataentry/1/IN3.png",
       "/images/dataentry/1/IN4.png",
       "/images/dataentry/1/IN5.png",
+      "/images/dataentry/1/IN6.png",
+      "/images/dataentry/1/IN7.png",
+      "/images/dataentry/1/IN8.png",
+      "/images/dataentry/1/IN9.png",
     ],
   },
   {
@@ -36,20 +42,26 @@ const projects = [
       "Sistem pengelolaan sumber daya manusia yang mencakup data karyawan, cuti, lembur, aset, dan payroll. Data terhubung melalui ID karyawan dengan otomatisasi perhitungan dan pengambilan data menggunakan fungsi lookup serta formula Excel.",
     buttonLabel: "Lihat Project",
     buttonUrl:
-    "https://docs.google.com/spreadsheets/d/1WtNwdiHO-uS6tVAFFf17TXlhO6909zSeHXeg-_Hluss/edit?usp=sharing",
-    coverImage: "/images/dataentry/2/HR1.png",
+      "https://docs.google.com/spreadsheets/d/1WtNwdiHO-uS6tVAFFf17TXlhO6909zSeHXeg-_Hluss/edit?usp=sharing",
+    coverImage: "/images/dataentry/2/HRCover.png",
     images: [
       "/images/dataentry/2/Laptop 2.png",
+      "/images/dataentry/2/HR1.png",
       "/images/dataentry/2/HR2.png",
       "/images/dataentry/2/HR3.png",
       "/images/dataentry/2/HR4.png",
+      "/images/dataentry/2/HR5.png",
+      "/images/dataentry/2/HR6.png",
+      "/images/dataentry/2/HR7.png",
+      "/images/dataentry/2/HR8.png",
+      "/images/dataentry/2/HR9.png",
     ],
   },
   {
     id: 3,
     title: "Kocek by Djoin",
     category: "Graphic Design",
-    color: "#ead9ff",
+    color: "#f1e6ff",
     accent: "#6f00ed",
     images: [
       "/images/socialmedia/kocek/Kocek (7).png",
@@ -68,7 +80,7 @@ const projects = [
     id: 4,
     title: "Travel Design",
     category: "Graphic Design",
-    color: "#d4f1f4",
+    color: "#e8fdff",
     accent: "#03b1fc",
     images: [
       "/images/socialmedia/freelance/h3 (1).png",
@@ -85,7 +97,7 @@ const projects = [
     id: 5,
     title: "Food Design",
     category: "Graphic Design",
-    color: "#ffe6e8",
+    color: "#fff0f1",
     accent: "#c2001a",
     images: [
       "/images/socialmedia/freelance/h2 (1).png",
@@ -110,11 +122,9 @@ function FullscreenLightbox({
   onClose: () => void;
   isDataEntry?: boolean;
 }) {
-  const fillColor = isDataEntry
-    ? "rgba(128,128,128,0.4)"
-    : "rgba(255, 255, 255, 0.35)";
-
-  const watermarkSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100' viewBox='0 0 160 100'%3E%3Ctext x='50%25' y='50%25' fill='${encodeURIComponent(fillColor)}' font-size='12' font-weight='700' font-family='sans-serif' text-anchor='middle' transform='rotate(-25 80 50)'%3EEka Mahardika%3C/text%3E%3C/svg%3E")`;
+  const watermarkSvg = !isDataEntry
+    ? `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100' viewBox='0 0 160 100'%3E%3Ctext x='50%25' y='50%25' fill='rgba(255, 255, 255, 0.35)' font-size='12' font-weight='700' font-family='sans-serif' text-anchor='middle' transform='rotate(-25 80 50)'%3EEka Mahardika%3C/text%3E%3C/svg%3E")`
+    : "none";
 
   return (
     <div
@@ -156,17 +166,19 @@ function FullscreenLightbox({
           }}
         />
 
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            zIndex: 5,
-            borderRadius: 12,
-            backgroundImage: watermarkSvg,
-            backgroundRepeat: "repeat",
-            pointerEvents: "all",
-          }}
-        />
+        {!isDataEntry && (
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 5,
+              borderRadius: 12,
+              backgroundImage: watermarkSvg,
+              backgroundRepeat: "repeat",
+              pointerEvents: "all",
+            }}
+          />
+        )}
       </div>
     </div>
   );
@@ -193,18 +205,6 @@ function LightboxModal({
           zIndex: 200,
           backdropFilter: "blur(4px)",
           animation: "fadeIn 0.2s ease",
-        }}
-      />
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 201,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "1.5rem",
-          pointerEvents: "none",
         }}
       />
       <div
@@ -362,7 +362,7 @@ function LightboxModal({
   );
 }
 
-// ─── Modal khusus DATA ENTRY ──────────────────────────────────────────────────
+// ─── Modal khusus DATA ENTRY dengan Scroll Indicator Animasi ──────────────────
 function DataEntryModal({
   project,
   onClose,
@@ -371,15 +371,26 @@ function DataEntryModal({
   onClose: () => void;
 }) {
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
+  const [showScrollHint, setShowScrollHint] = useState(true);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const p = project as any;
 
-  // Menggunakan data pertama array images (gambar laptop) jika tersedia
   const modalMainImage =
     p.images && p.images.length > 0 ? p.images[0] : p.coverImage;
 
-  // Memfilter gambar untuk bagian bawah (mengabaikan gambar pertama/laptop)
   const nonLaptopImages =
     p.images && p.images.length > 1 ? p.images.slice(1) : [];
+
+  // Handler untuk mendeteksi scroll pengguna agar animasi hilang secara halus
+  const handleScroll = () => {
+    if (scrollContainerRef.current) {
+      if (scrollContainerRef.current.scrollTop > 40) {
+        setShowScrollHint(false);
+      } else {
+        setShowScrollHint(true);
+      }
+    }
+  };
 
   return (
     <>
@@ -396,7 +407,7 @@ function DataEntryModal({
         }}
       />
 
-      {/* Modal container */}
+      {/* Modal container wrapper */}
       <div
         style={{
           position: "fixed",
@@ -411,17 +422,20 @@ function DataEntryModal({
       >
         <div
           style={{
+            position: "relative", // Diperlukan untuk penempatan absolute si scroll indicator
             background: "#fff",
             borderRadius: 24,
             width: "100%",
             maxWidth: 1100,
             maxHeight: "90vh",
-            overflowY: "auto",
+            display: "flex",
+            flexDirection: "column",
             pointerEvents: "all",
             animation: "slideUp 0.25s ease",
+            boxShadow: "0 30px 60px rgba(0,0,0,0.25)",
           }}
         >
-          {/* ── Header ── */}
+          {/* ── Header (Sticky) ── */}
           <div
             style={{
               display: "flex",
@@ -429,10 +443,8 @@ function DataEntryModal({
               justifyContent: "space-between",
               padding: "1.25rem 1.5rem",
               borderBottom: "1px solid var(--border, #eee)",
-              position: "sticky",
-              top: 0,
               background: "#fff",
-              zIndex: 1,
+              zIndex: 10,
               borderRadius: "24px 24px 0 0",
             }}
           >
@@ -486,9 +498,16 @@ function DataEntryModal({
             </button>
           </div>
 
-          {/* ── Body ── */}
-          <div style={{ padding: "1.5rem" }}>
-            {/* Baris atas: foto laptop (data pertama array images) + info kanan */}
+          {/* ── Body (Scrollable Container) ── */}
+          <div
+            ref={scrollContainerRef}
+            onScroll={handleScroll}
+            style={{
+              padding: "1.5rem",
+              overflowY: "auto",
+              flex: 1,
+            }}
+          >
             <div
               style={{
                 display: "grid",
@@ -502,13 +521,12 @@ function DataEntryModal({
                 style={{
                   borderRadius: 16,
                   overflow: "hidden",
-                  // background: project.color,
                   aspectRatio: "4/3",
                   cursor: "zoom-in",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  padding: "1rem", // Memberikan sedikit padding agar mockup terlihat manis dan terlepas dari border container
+                  padding: "1rem",
                 }}
                 onClick={() => setLightboxImg(modalMainImage)}
               >
@@ -519,7 +537,7 @@ function DataEntryModal({
                   style={{
                     width: "100%",
                     height: "100%",
-                    objectFit: "contain", // Diubah dari 'cover' ke 'contain' agar laptop tidak terpotong/di-zoom
+                    objectFit: "contain",
                     display: "block",
                   }}
                 />
@@ -585,7 +603,7 @@ function DataEntryModal({
               </div>
             </div>
 
-            {/* Baris bawah: List foto pendukung (Hanya menampilkan gambar NON-LAPTOP) */}
+            {/* Baris bawah: List foto pendukung */}
             {nonLaptopImages.length > 0 && (
               <div
                 style={{
@@ -643,6 +661,36 @@ function DataEntryModal({
               </div>
             )}
           </div>
+
+          {/* ── ANIMASI SCROLL INDICATOR (Hanya Muncul Jika Belum Di-scroll) ── */}
+          <div
+            className={`scroll-hint ${showScrollHint ? "visible" : "hidden"}`}
+            style={{
+              position: "absolute",
+              bottom: "20px",
+              right: "30px",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              background: "rgba(255, 255, 255, 0.85)",
+              backdropFilter: "blur(8px)",
+              padding: "6px 14px",
+              borderRadius: "20px",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.1)",
+              pointerEvents: "none",
+              zIndex: 20,
+              transition: "opacity 0.4s ease, transform 0.4s ease",
+            }}
+          >
+            <span
+              style={{ fontSize: "0.78rem", fontWeight: 600, color: "#444" }}
+            >
+              Scroll ke bawah
+            </span>
+            <div className="scroll-mouse">
+              <div className="scroll-wheel"></div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -654,9 +702,39 @@ function DataEntryModal({
         />
       )}
 
+      {/* Tambahan Keyframes Animasi Khusus Mouse Wheel Indicator */}
       <style>{`
         @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
         @keyframes slideUp { from { transform: translateY(30px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+        
+        .scroll-hint.visible { opacity: 1; transform: translateY(0); }
+        .scroll-hint.hidden { opacity: 0; transform: translateY(10px); }
+
+        .scroll-mouse {
+          width: 14px;
+          height: 22px;
+          border: 2px solid #333;
+          border-radius: 8px;
+          position: relative;
+        }
+        .scroll-wheel {
+          width: 2px;
+          height: 5px;
+          background-color: ${project.accent || "#333"};
+          border-radius: 1px;
+          position: absolute;
+          top: 3px;
+          left: 50%;
+          transform: translateX(-50%);
+          animation: scrollDrop 1.6s infinite ease-in-out;
+        }
+
+        @keyframes scrollDrop {
+          0% { opacity: 0; top: 2px; }
+          30% { opacity: 1; }
+          70% { opacity: 1; top: 10px; }
+          100% { opacity: 0; top: 12px; }
+        }
       `}</style>
     </>
   );
@@ -688,7 +766,7 @@ function DataEntryCard({
         boxShadow: hovered
           ? "0 20px 40px rgba(0,0,0,0.12)"
           : "0 2px 8px rgba(0,0,0,0.04)",
-        border: "2px solid transparent", // Hover border dihilangkan, disamakan dengan regular card
+        border: "2px solid transparent",
       }}
     >
       <div
@@ -811,7 +889,6 @@ function RegularCard({
           : "0 2px 8px rgba(0,0,0,0.04)",
       }}
     >
-      {/* Pembungkus grid gambar dibuat relative agar posisi badge bulat akurat */}
       <div style={{ position: "relative", height: 243 }}>
         <div
           style={{
@@ -875,7 +952,6 @@ function RegularCard({
           </div>
         </div>
 
-        {/* Badge Bulat Graphic Design di atas kiri gambar */}
         <span
           style={{
             position: "absolute",

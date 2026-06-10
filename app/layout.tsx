@@ -3,7 +3,6 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Eka Mahardika",
-  // description: "Professional Graphic Designer specializing in Social Media, Illustration & T-Shirt Design",
 };
 
 export default function RootLayout({

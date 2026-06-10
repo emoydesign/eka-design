@@ -44,7 +44,6 @@ const skillsList = [
   "Website",
 ];
 
-// DATA SERTIFIKAT: Ubah nilai 'imageSrc' ke path file sertifikat Anda masing-masing
 const certifications = [
   {
     name: "Applied Microsoft Office",
@@ -65,20 +64,20 @@ const certifications = [
 ];
 
 export default function About() {
-  // State untuk menyimpan sertifikat gambar yang sedang aktif dibuka di modal
   const [activeCertImg, setActiveCertImg] = useState<string | null>(null);
 
-  // Pengaturan Watermark SVG dinamis dengan text "Eka Mahardika" miring berulang
-  const watermarkColor = "rgba(128, 128, 128, 0.35)"; // Warna abu-abu transparan semi-clear
+  const watermarkColor = "rgba(128, 128, 128, 0.35)";
   const watermarkSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100' viewBox='0 0 160 100'%3E%3Ctext x='50%25' y='50%25' fill='${encodeURIComponent(watermarkColor)}' font-size='11' font-weight='700' font-family='sans-serif' text-anchor='middle' transform='rotate(-25 80 50)'%3EEka Mahardika%3C/text%3E%3C/svg%3E")`;
 
   return (
     <section
       id="about"
       style={{
-        padding: "4rem 2rem",
+        padding: "5rem 2rem", // Padding samping disamakan persis 2rem (32px)
         maxWidth: 1100,
         margin: "0 auto",
+        width: "100%",
+        boxSizing: "border-box",
       }}
     >
       <style
@@ -108,6 +107,11 @@ export default function About() {
           border-color: var(--primary) !important;
           transform: translateX(8px);
         }
+        @media (max-width: 768px) {
+          .cert-item:hover {
+            transform: translateY(-3px);
+          }
+        }
         .cert-item:hover .cert-text {
           color: #fff !important;
         }
@@ -119,50 +123,24 @@ export default function About() {
           transform: rotate(-45deg);
         }
 
-        .software-wrapper {
-          position: relative;
-        }
+        .software-wrapper { position: relative; }
         .software-tooltip {
-          position: absolute;
-          bottom: 110%;
-          left: 50%;
-          transform: translateX(-50%) translateY(5px);
-          background-color: #1e1b18;
-          color: #fff;
-          padding: 4px 8px;
-          border-radius: 6px;
-          font-size: 0.7rem;
-          font-weight: 500;
-          white-space: nowrap;
-          opacity: 0;
-          visibility: hidden;
-          transition: all 0.2s ease;
-          box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-          z-index: 10;
+          position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%) translateY(5px);
+          background-color: #1e1b18; color: #fff; padding: 4px 8px; border-radius: 6px;
+          font-size: 0.7rem; font-weight: 500; white-space: nowrap; opacity: 0; visibility: hidden;
+          transition: all 0.2s ease; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); z-index: 10;
         }
         .software-tooltip::after {
-          content: "";
-          position: absolute;
-          top: 100%;
-          left: 50%;
-          transform: translateX(-50%);
-          border-width: 5px;
-          border-style: solid;
-          border-color: #1e1b18 transparent transparent transparent;
+          content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+          border-width: 5px; border-style: solid; border-color: #1e1b18 transparent transparent transparent;
         }
-        .software-wrapper:hover .software-tooltip {
-          opacity: 1;
-          visibility: visible;
-          transform: translateX(-50%) translateY(0);
-        }
-
+        .software-wrapper:hover .software-tooltip { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
         @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
         @keyframes zoomIn { from { transform: scale(0.95); opacity: 0 } to { transform: scale(1); opacity: 1 } }
       `,
         }}
       />
 
-      {/* Section label */}
       <p
         style={{
           color: "var(--primary)",
@@ -178,10 +156,10 @@ export default function About() {
 
       <h2
         style={{
-          fontSize: "clamp(2rem, 4vw, 3rem)",
+          fontSize: "clamp(2.2rem, 5vw, 3rem)",
           fontWeight: 900,
           letterSpacing: "-0.03em",
-          marginBottom: "3.5rem",
+          marginBottom: "2.5rem",
           maxWidth: 540,
           lineHeight: 1.15,
         }}
@@ -190,23 +168,28 @@ export default function About() {
       </h2>
 
       <div
+        className="flex flex-col md:grid"
         style={{
-          display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gap: "4rem",
+          gap: "3rem md:4rem",
           alignItems: "start",
+          width: "100%",
         }}
-        className="grid-cols-1 md:grid-cols-2"
       >
         {/* LEFT COLUMN */}
         <div
-          style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "2.5rem",
+            width: "100%",
+          }}
         >
           {/* Software */}
           <div>
             <h3
               style={{
-                fontSize: "1.8rem",
+                fontSize: "1.6rem",
                 fontWeight: "bold",
                 marginBottom: "1.25rem",
                 color: "var(--fg)",
@@ -215,13 +198,8 @@ export default function About() {
               Software
             </h3>
             <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(5, 1fr)",
-                gap: "1rem",
-                rowGap: "1.5rem",
-                alignItems: "center",
-              }}
+              className="grid grid-cols-5"
+              style={{ gap: "1rem", rowGap: "1.5rem", alignItems: "center" }}
             >
               {softwareList.map((sw, index) => (
                 <div
@@ -229,7 +207,7 @@ export default function About() {
                   className="software-wrapper"
                   style={{
                     display: "flex",
-                    justifyContent: "flex-start",
+                    justifyContent: "center",
                     alignItems: "center",
                     cursor: "pointer",
                   }}
@@ -238,8 +216,8 @@ export default function About() {
                     src={sw.src}
                     alt={sw.name}
                     style={{
-                      width: "45px",
-                      height: "45px",
+                      width: "42px",
+                      height: "42px",
                       objectFit: "contain",
                     }}
                     onError={(e) => {
@@ -256,7 +234,7 @@ export default function About() {
           <div>
             <h3
               style={{
-                fontSize: "1.8rem",
+                fontSize: "1.6rem",
                 fontWeight: "bold",
                 marginBottom: "1.25rem",
                 color: "var(--fg)",
@@ -264,7 +242,7 @@ export default function About() {
             >
               Skills
             </h3>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.65rem" }}>
               {skillsList.map((skill, index) => (
                 <div
                   key={index}
@@ -273,7 +251,7 @@ export default function About() {
                     display: "flex",
                     alignItems: "center",
                     gap: "0.5rem",
-                    padding: "0.5rem 1.25rem",
+                    padding: "0.4rem 1.15rem",
                     borderRadius: "50px",
                     border: "1px solid var(--border)",
                     backgroundColor: "#fff",
@@ -292,7 +270,7 @@ export default function About() {
                   <span
                     className="skill-text"
                     style={{
-                      fontSize: "0.9rem",
+                      fontSize: "0.85rem",
                       color: "var(--muted)",
                       fontWeight: 500,
                       transition: "color 0.3s ease",
@@ -309,7 +287,7 @@ export default function About() {
           <div>
             <h3
               style={{
-                fontSize: "1.8rem",
+                fontSize: "1.6rem",
                 fontWeight: "bold",
                 marginBottom: "1.25rem",
                 color: "var(--fg)",
@@ -337,6 +315,7 @@ export default function About() {
                     borderRadius: "50px",
                     border: "1px solid var(--border)",
                     backgroundColor: "#fff",
+                    gap: "0.5rem",
                   }}
                 >
                   <div
@@ -344,6 +323,7 @@ export default function About() {
                       display: "flex",
                       alignItems: "center",
                       gap: "0.5rem",
+                      minWidth: 0,
                     }}
                   >
                     <span
@@ -353,15 +333,19 @@ export default function About() {
                         height: 6,
                         borderRadius: "50%",
                         backgroundColor: "var(--primary)",
+                        flexShrink: 0,
                         transition: "background-color 0.3s ease",
                       }}
                     />
                     <span
                       className="cert-text"
                       style={{
-                        fontSize: "0.9rem",
+                        fontSize: "0.85rem",
                         color: "var(--muted)",
                         fontWeight: 500,
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                         transition: "color 0.3s ease",
                       }}
                     >
@@ -375,6 +359,7 @@ export default function About() {
                       fontSize: "1.2rem",
                       fontWeight: "bold",
                       display: "inline-block",
+                      flexShrink: 0,
                       transition: "transform 0.3s ease, color 0.3s ease",
                     }}
                   >
@@ -387,10 +372,10 @@ export default function About() {
         </div>
 
         {/* RIGHT COLUMN: Experience Timeline */}
-        <div>
+        <div style={{ width: "100%" }}>
           <h3
             style={{
-              fontSize: "1.8rem",
+              fontSize: "1.6rem",
               fontWeight: "bold",
               marginBottom: "1.75rem",
               color: "var(--fg)",
@@ -487,7 +472,7 @@ export default function About() {
         </div>
       </div>
 
-      {/* ─── FULLSCREEN LIGHTBOX MODAL WITH GRID WATERMARK ─── */}
+      {/* MODAL */}
       {activeCertImg && (
         <div
           onClick={() => setActiveCertImg(null)}
@@ -500,13 +485,12 @@ export default function About() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: "2rem",
+            padding: "1.5rem",
             cursor: "zoom-out",
             userSelect: "none",
             animation: "fadeIn 0.25s ease forwards",
           }}
         >
-          {/* Container Gambar & Watermark */}
           <div
             style={{
               position: "relative",
@@ -516,24 +500,21 @@ export default function About() {
               animation:
                 "zoomIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
             }}
-            onClick={(e) => e.stopPropagation()} // Supaya modal tidak tertutup jika gambar diklik
-            onContextMenu={(e) => e.preventDefault()} // Matikan Fitur Klik Kanan (Anti Save As)
+            onClick={(e) => e.stopPropagation()}
+            onContextMenu={(e) => e.preventDefault()}
           >
-            {/* Element Gambar Asli */}
             <img
               src={activeCertImg}
               alt="Sertifikat"
               style={{
                 maxWidth: "100%",
-                maxHeight: "85vh",
+                maxHeight: "80vh",
                 objectFit: "contain",
                 borderRadius: "12px",
                 boxShadow: "0 30px 60px rgba(0,0,0,0.8)",
-                pointerEvents: "none", // Mencegah drag-and-drop gambar ke tab baru
+                pointerEvents: "none",
               }}
             />
-
-            {/* Lapisan Transparan Utama + Pola Watermark Grid SVG */}
             <div
               style={{
                 position: "absolute",
@@ -542,38 +523,29 @@ export default function About() {
                 borderRadius: "12px",
                 backgroundImage: watermarkSvg,
                 backgroundRepeat: "repeat",
-                pointerEvents: "all", // Memastikan layer ini yang menangkap interaksi kursor agar gambar di bawah terlindungi
+                pointerEvents: "all",
               }}
             />
           </div>
-
-          {/* Tombol Close Pojok Kanan Atas */}
           <button
             onClick={() => setActiveCertImg(null)}
             style={{
               position: "fixed",
-              top: "2rem",
-              right: "2rem",
+              top: "1.5rem",
+              right: "1.5rem",
               background: "rgba(255, 255, 255, 0.15)",
               border: "none",
               color: "#fff",
-              width: "44px",
-              height: "44px",
+              width: "40px",
+              height: "40px",
               borderRadius: "50%",
-              fontSize: "1.2rem",
+              fontSize: "1rem",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              transition: "background 0.2s, transform 0.2s",
               zIndex: 1000,
             }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.background = "rgba(255, 255, 255, 0.3)")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.background = "rgba(255, 255, 255, 0.15)")
-            }
           >
             ✕
           </button>
