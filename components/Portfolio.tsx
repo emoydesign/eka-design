@@ -46,6 +46,7 @@ const projects = [
     coverImage: "/images/dataentry/2/HRCover.png",
     images: [
       "/images/dataentry/2/Laptop 2.png",
+      "/images/dataentry/2/HR10.png",
       "/images/dataentry/2/HR1.png",
       "/images/dataentry/2/HR2.png",
       "/images/dataentry/2/HR3.png",
@@ -59,6 +60,27 @@ const projects = [
   },
   {
     id: 3,
+    title: "Expense Tracker Monthly",
+    category: "Data Entry",
+    type: "data-entry",
+    color: "#f0fdf4",
+    accent: "#bf0000",
+    description:
+      "File ini adalah sistem pencatatan keuangan pribadi berbasis Excel yang memungkinkan pengguna melacak pemasukan, pengeluaran, saldo, dan ringkasan per kategori — semua dalam satu file yang saling terhubung. Terdiri dari 5 sheet dengan peran masing-masing.",
+    buttonLabel: "Lihat Project",
+    buttonUrl:
+      "https://docs.google.com/spreadsheets/d/1Qw4CFTD6A-kyJuklv56SYyhsWQnkwvXeFj8pmdGGupw/edit?usp=sharing",
+    coverImage: "/images/dataentry/3/ETCover.png",
+    images: [
+      "/images/dataentry/3/Laptop 3.png",
+      "/images/dataentry/3/ET1.png",
+      "/images/dataentry/3/ET2.png",
+      "/images/dataentry/3/ET3.png",
+      "/images/dataentry/3/ET4.png",
+    ],
+  },
+  {
+    id: 4,
     title: "Kocek by Djoin",
     category: "Graphic Design",
     color: "#f1e6ff",
@@ -77,7 +99,7 @@ const projects = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     title: "Travel Design",
     category: "Graphic Design",
     color: "#e8fdff",
@@ -94,7 +116,7 @@ const projects = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     title: "Food Design",
     category: "Graphic Design",
     color: "#fff0f1",
