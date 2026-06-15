@@ -110,9 +110,9 @@ export default function Contact() {
               color: "var(--fg)",
             }}
           >
-            Mari
+            Ayo
             <br />
-            Terhubung.
+            <span style={{ color: "var(--primary)" }}>Kerja Sama!</span>
           </h2>
 
           <p

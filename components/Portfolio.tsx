@@ -63,7 +63,7 @@ const projects = [
     title: "Expense Tracker Monthly",
     category: "Data Entry",
     type: "data-entry",
-    color: "#f0fdf4",
+    color: "#fff7f7",
     accent: "#bf0000",
     description:
       "File ini adalah sistem pencatatan keuangan pribadi berbasis Excel yang memungkinkan pengguna melacak pemasukan, pengeluaran, saldo, dan ringkasan per kategori — semua dalam satu file yang saling terhubung. Terdiri dari 5 sheet dengan peran masing-masing.",
