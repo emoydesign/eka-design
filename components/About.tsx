@@ -459,7 +459,7 @@ export default function About() {
                   <p
                     style={{
                       fontSize: "0.85rem",
-                      color: "var(--muted)",
+                      color: "var(--primary)",
                       lineHeight: 1.65,
                     }}
                   >
