@@ -449,7 +449,7 @@ export default function About() {
                   <p
                     style={{
                       fontSize: "0.8rem",
-                      color: "var(--secondary)",
+                      color: "var(--primary)",
                       fontWeight: 600,
                       marginBottom: "0.4rem",
                     }}
@@ -459,7 +459,7 @@ export default function About() {
                   <p
                     style={{
                       fontSize: "0.85rem",
-                      color: "var(--primary)",
+                      color: "var(--muted)",
                       lineHeight: 1.65,
                     }}
                   >
