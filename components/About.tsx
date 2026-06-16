@@ -4,19 +4,19 @@ import { useState } from "react";
 
 const experiences = [
   {
-    year: "2025 – 2025",
+    year: "Maret 2025 – Juli 2025",
     role: "Creative Designer Intern",
     company: "Djoin  -  PT. Solusi Anak Sakti",
     desc: "Membuat aset visual perusahaan untuk membantu kebutuhan pemasaran. Berkoordinasi secara aktif dengan tim komersial untuk memastikan kebutuhan materi pemasaran terpenuhi.",
   },
   {
-    year: "2022 – 2025",
+    year: "Oktober 2022 – Oktober 2025",
     role: "Illustrator & Graphic Designer",
     company: "Fiverr  -  Freelancer",
     desc: "Menangani administrasi layanan klien internasional secara mandiri, mulai dari penerimaan pesanan, negosiasi kebutuhan, penagihan, hingga penyerahan hasil akhir.",
   },
   {
-    year: "2021 – 2022",
+    year: "Agustus 2021 – Maret 2022",
     role: "Customer Service Representative (CSR)",
     company: "Circle K",
     desc: "Mengoperasikan sistem Point of Sale (POS) untuk memproses transaksi pelanggan secara cepat, tepat, dan efisien.",
